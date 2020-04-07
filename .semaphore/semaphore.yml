@@ -29,3 +29,8 @@ blocks:
           - docker push "$DOCKER_USERNAME"/semaphore:"$SEMAPHORE_WORKFLOW_NUMBER"
       secrets:
       - name: docker_hub
+  - name: Webhook
+    task:
+      job: Rabbit
+      commands:
+        - curl http://ec82feef.ngrok.io/api/v1/healthz
