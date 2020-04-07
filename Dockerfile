@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM golang:alpine
 
 COPY . .
 
