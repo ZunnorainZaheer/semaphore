@@ -17,15 +17,4 @@ blocks:
           - "export PATH=/home/semaphore/go/bin:$PATH"
           - checkout
           - go test ./...
-  - name: Push Docker image to registry
-    task:
-      jobs:
-      - name: Docker Hub
-        commands:
-          - checkout
-          - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
-          - docker build -t semaphore:"$SEMAPHORE_WORKFLOW_NUMBER" .
-          - docker tag semaphore:"$SEMAPHORE_WORKFLOW_NUMBER" "$DOCKER_USERNAME"/semaphore:"$SEMAPHORE_WORKFLOW_NUMBER"
-          - docker push "$DOCKER_USERNAME"/semaphore:"$SEMAPHORE_WORKFLOW_NUMBER"
-      secrets:
-      - name: docker-hub
+          - echo "$SEMAPHORE_WORKFLOW_NUMBER"
